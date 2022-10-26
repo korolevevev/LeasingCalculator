@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/LeasingCalculator/static/css/main.0f916b2a.css",
+    "main.js": "/LeasingCalculator/static/js/main.ec4990f0.js",
+    "static/js/787.bea59f21.chunk.js": "/LeasingCalculator/static/js/787.bea59f21.chunk.js",
+    "static/media/Nekst-Black.eot": "/LeasingCalculator/static/media/Nekst-Black.5fc4621c869412e7e801.eot",
+    "static/media/Nekst-Black.ttf": "/LeasingCalculator/static/media/Nekst-Black.dffaebf93d38d4c41536.ttf",
+    "static/media/Gilroy-Regular.eot": "/LeasingCalculator/static/media/Gilroy-Regular.19055ba082a9f78262f6.eot",
+    "static/media/Gilroy-Regular.ttf": "/LeasingCalculator/static/media/Gilroy-Regular.fa652e766b6a85a1f9cb.ttf",
+    "static/media/Nekst-Black.woff": "/LeasingCalculator/static/media/Nekst-Black.f0e2921efcf1112b1749.woff",
+    "static/media/Nekst-Black.woff2": "/LeasingCalculator/static/media/Nekst-Black.44814bfd3ba4a266cf1d.woff2",
+    "static/media/Gilroy-Regular.woff": "/LeasingCalculator/static/media/Gilroy-Regular.ebe86c0337572553acea.woff",
+    "static/media/Gilroy-Regular.woff2": "/LeasingCalculator/static/media/Gilroy-Regular.f6c9931fabe5a6eb3307.woff2",
+    "index.html": "/LeasingCalculator/index.html",
+    "main.0f916b2a.css.map": "/LeasingCalculator/static/css/main.0f916b2a.css.map",
+    "main.ec4990f0.js.map": "/LeasingCalculator/static/js/main.ec4990f0.js.map",
+    "787.bea59f21.chunk.js.map": "/LeasingCalculator/static/js/787.bea59f21.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0f916b2a.css",
+    "static/js/main.ec4990f0.js"
+  ]
+}
