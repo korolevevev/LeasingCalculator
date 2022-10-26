@@ -1,38 +1,206 @@
-.App {
-  text-align: center;
+*
+{
+    margin: 0;
+    padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@font-face {
+    font-family: 'Nekst';
+    src: url('./fonts/Nekst/Nekst-Black.eot');
+    src: local('Nekst Black'), local('Nekst-Black'),
+    url('./fonts/Nekst/Nekst-Black.eot?#iefix') format('embedded-opentype'),
+    url('./fonts/Nekst/Nekst-Black.woff2') format('woff2'),
+    url('./fonts/Nekst/Nekst-Black.woff') format('woff'),
+    url('./fonts/Nekst/Nekst-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+@font-face {
+    font-family: 'Gilroy';
+    src: url('./fonts/Gilroy/Gilroy-Regular.eot');
+    src: local('Gilroy Regular'), local('Gilroy-Regular'),
+    url('./fonts/Gilroy/Gilroy-Regular.eot?#iefix') format('embedded-opentype'),
+    url('./fonts/Gilroy/Gilroy-Regular.woff2') format('woff2'),
+    url('./fonts/Gilroy/Gilroy-Regular.woff') format('woff'),
+    url('./fonts/Gilroy/Gilroy-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+body {
+    padding: 47px;
+    font-family: Nekst, sans-serif;
 }
 
-.App-link {
-  color: #61dafb;
+.block-header {
+    font-size: 54px;
+    margin-bottom: 32px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.parameters {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 32px;
+    margin-bottom: 50px;
 }
+
+.parameter-title {
+    font-family: Gilroy, sans-serif;
+    font-size: 16px;
+    margin-bottom: 24px;
+    color: #575757;
+}
+
+.parameter-field {
+    background-color: #F3F3F4;
+    border-radius: 16px;
+    padding: 0 24px;
+}
+
+.parameter-field:nth-child(2) {
+    position: relative;
+}
+
+.parameter-wrapper {
+    padding: 16px 0;
+    display: block;
+    position: relative;
+}
+
+.parameter-text {
+    display: flex;
+    justify-content: space-between;
+}
+
+.parameter-field input[type=tel] {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-family: Nekst, sans-serif;
+    font-size: 30px;
+    color: #575757;
+}
+
+.measure {
+    font-family: Nekst, sans-serif;
+    font-size: 30px;
+    line-height: 30px;
+    color: #575757;
+    display: flex;
+}
+
+.parameter-field input[type='range'] {
+    -webkit-appearance: none;
+    width: 100%;
+    background-color: #E1E1E1;
+    position: absolute;
+    bottom: 0;
+    z-index: 1;
+}
+
+.parameter-field input[type=range]::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    height: 2px;
+    color: #FF9514;
+}
+
+.parameter-field input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background: #FF9514;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    margin-top: -9px;
+    /*box-shadow: -80px 0 0 500px #43e5f7;*/
+}
+
+input[type=range].slider-progress {
+    --range: calc(var(--max) - var(--min));
+    --ratio: calc((var(--value) - var(--min)) / var(--range));
+    --sx: calc(0.5 * 20px + var(--ratio) * (100% - 20px));
+}
+
+input[type=range].slider-progress::-webkit-slider-runnable-track {
+    background: linear-gradient(#FF9514,#FF9514) 0/var(--sx) 100% no-repeat, #E1E1E1;
+}
+
+.initial-payment {
+    background: transparent;
+    font-family: Nekst, sans-serif;
+    font-size: 30px;
+    color: #575757;
+    display: flex;
+}
+
+.initial-payment div:nth-child(2) {
+    margin-left: 5px;
+    line-height: 30px;
+}
+
+.initial-payment-percent {
+    position: absolute;
+    display: flex;
+    font-size: 20px;
+    color: #575757;
+    padding: 17px;
+    background-color: #EBEBEC;
+    border-radius: 16px;
+    right: 7px;
+    top: 6px;
+    z-index: 0;
+}
+
+.initial-payment-percent input[type=tel] {
+    font-size: 20px;
+    color: #575757;
+    width: 25px;
+}
+
+.result-title {
+    font-family: Gilroy, sans-serif;
+    font-size: 16px;
+    color: #575757;
+    margin-bottom: 12px;
+}
+
+.result-text {
+    display: flex;
+    font-size: 54px;
+    color: #333333;
+    line-height: 48px;
+}
+
+.result-text div:nth-child(2) {
+    line-height: 38px;
+    margin-left: 5px;
+}
+
+.results {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 32px;
+}
+
+.result, .send {
+    width: 100%;
+}
+
+.send button {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: #FF9514;
+    border-radius: 40px;
+    font-family: 'Nekst-Black', sans-serif;
+    font-weight: 900;
+    font-size: 30px;
+    color: #FFFFFF;
+}
+
+
