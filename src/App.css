@@ -74,7 +74,7 @@ body {
     justify-content: space-between;
 }
 
-.parameter-field input[type=tel] {
+.number-input {
     width: 100%;
     border: none;
     background: transparent;
@@ -100,7 +100,7 @@ body {
     z-index: 1;
 }
 
-.parameter-field input[type=range]::-webkit-slider-runnable-track {
+.parameter-field input[type='range']::-webkit-slider-runnable-track {
     -webkit-appearance: none;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
@@ -108,7 +108,7 @@ body {
     color: #FF9514;
 }
 
-.parameter-field input[type=range]::-webkit-slider-thumb {
+.parameter-field input[type='range']::-webkit-slider-thumb {
     -webkit-appearance: none;
     background: #FF9514;
     border-radius: 50%;
@@ -154,7 +154,7 @@ input[type=range].slider-progress::-webkit-slider-runnable-track {
     z-index: 0;
 }
 
-.initial-payment-percent input[type=tel] {
+.initial-payment-input {
     font-size: 20px;
     color: #575757;
     width: 25px;
@@ -228,13 +228,12 @@ input[type=range].slider-progress::-webkit-slider-runnable-track {
         line-height: 22px;
     }
 
-    .parameter-field input[type='tel'] {
+    .parameter-field number-input {
         font-size: 22px;
     }
 
     .initial-payment div:nth-child(2) {
         line-height: 22px;
-        /*margin-bottom: 8px;*/
     }
 
     .parameter-field:nth-child(2) {
@@ -243,6 +242,7 @@ input[type=range].slider-progress::-webkit-slider-runnable-track {
 
     .initial-payment-percent {
         padding: 13px;
+        top: 5px;
     }
 
     .results {
@@ -276,7 +276,7 @@ input[type=range].slider-progress::-webkit-slider-runnable-track {
         font-size: 22px;
     }
 
-    .initial-payment-percent input[type=tel] {
+    .initial-payment-input {
         width: 27px;
     }
 }

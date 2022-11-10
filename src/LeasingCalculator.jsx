@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import NumberInput from "./NumberMask";
 
 export const LeasingCalculator = () => {
     const [carCost, setCarCost] = useState(3300000)
@@ -13,36 +14,41 @@ export const LeasingCalculator = () => {
         const monthPay = Math.floor((carCost - initialPayment) * ((0.035 * Math.pow((1 + 0.035),
             leaseTerm)) / (Math.pow((1 + 0.035), leaseTerm) - 1)))
         setMonthlyPayment(monthPay)
-        console.log(initialPayment, leaseTerm, monthlyPayment)
         const totalSum = Math.floor(initialPayment + (leaseTerm * monthlyPayment))
-        console.log('totalSum', totalSum)
         setTotal(totalSum)
     }, [carCost, initialPayment, initialPaymentPercent, leaseTerm, monthlyPayment, total])
 
-    console.log(monthlyPayment, total)
-
     // для отображения slider-progress
-    for (let e of document.querySelectorAll('input[type="range"].slider-progress')) {
-        e.style.setProperty('--value', e.value);
-        e.style.setProperty('--min', e.min === '' ? '0' : e.min);
-        e.style.setProperty('--max', e.max === '' ? '100' : e.max);
-        e.addEventListener('input', () => e.style.setProperty('--value', e.value));
+    useEffect(() => {
+        for (let e of document.querySelectorAll('input[type="range"].slider-progress')) {
+            e.style.setProperty('--value', e.value);
+            e.style.setProperty('--min', e.min === '' ? '0' : e.min);
+            e.style.setProperty('--max', e.max === '' ? '100' : e.max);
+            e.addEventListener('input', () => e.style.setProperty('--value', e.value));
+        }
+    }, [carCost, initialPayment, initialPaymentPercent, leaseTerm, monthlyPayment, total])
+
+
+    const reformatNumber = (number) => {
+        return new Intl.NumberFormat("ru-RU").format(number);
     }
 
-    // const reformatNumber = (number) => {
-    //     const formatter = new Intl.NumberFormat("ru");
-    //     return formatter.format(number)
-    // }
-
-    // срабатывает при любом изменении
-    const onCarCostChange = (event) => {
+    const onCarCostSliderChange = (event) => {
         let num = event.target.value
         setCarCost(num)
     }
 
-    // срабатывает после смены фокуса
+    const onCarCostChange = (event) => {
+        let num = Number(event.target.value.replace(/ /g,''))
+        if(!num){
+            setCarCost(0);
+            return;
+        }
+        setCarCost(num)
+    }
+
     const onCarCostBlur = (event) => {
-        let num = event.target.value
+        let num = Number(event.target.value.replace(/ /g,''))
         if (num < 1000000) {
             num = 1000000
         } else if (num > 6000000) {
@@ -52,13 +58,51 @@ export const LeasingCalculator = () => {
         setCarCost(num)
     }
 
-    const onLeaseTermChange = (event) => {
+    const onLeaseTermSliderChange = (event) => {
         let num = event.target.value
         setLeaseTerm(num)
     }
 
-    const onInitialPaymentPercentChange = (event) => {
+    const onLeaseTermChange = (event) => {
+        let num = Number(event.target.value.replace(/ /g,''))
+        setLeaseTerm(num)
+    }
+
+    const onLeaseTermBlur = (event) => {
+        let num = Number(event.target.value.replace(/ /g,''))
+        if(!num){
+            setLeaseTerm(1);
+            return;
+        }
+        if (num < 1) {
+            num = 1
+        } else if (num > 60) {
+            num = 60
+        }
+        setInitialPaymentPercent(num)
+    }
+
+    const onInitialPaymentPercentSliderChange = (event) => {
         let num = event.target.value
+        setInitialPaymentPercent(num)
+    }
+
+    const onInitialPaymentPercentChange = (event) => {
+        let num = Number(event.target.value.replace(/ /g,''))
+        setInitialPaymentPercent(num)
+    }
+
+    const onInitialPaymentPercentBlur = (event) => {
+        let num = Number(event.target.value.replace(/ /g,''))
+        if(!num){
+            setInitialPaymentPercent(10);
+            return;
+        }
+        if (num < 10) {
+            num = 10
+        } else if (num > 60) {
+            num = 60
+        }
         setInitialPaymentPercent(num)
     }
 
@@ -70,11 +114,13 @@ export const LeasingCalculator = () => {
                     <div className='parameter-field'>
                         <div className='parameter-wrapper'>
                             <div className='parameter-text'>
-                                <div><input type="tel" value={carCost} onBlur={(event) => onCarCostBlur(event)}/></div>
+                                <div>
+                                    <NumberInput className='number-input' type='text' value={carCost} onChange={onCarCostChange} onBlur={onCarCostBlur}/>
+                                </div>
                                 <div className='measure'>₽</div>
                             </div>
                             <input className='slider-progress' type="range" min='1000000' max='6000000' step='50' value={carCost}
-                                   onChange={(event) => onCarCostChange(event)}/>
+                                   onChange={(event) => onCarCostSliderChange(event)}/>
                         </div>
                     </div>
                 </div>
@@ -84,15 +130,15 @@ export const LeasingCalculator = () => {
                         <div className='parameter-wrapper'>
                             <div className='parameter-text'>
                                 <div className='initial-payment'>
-                                    <div>{initialPayment}</div>
+                                    <div>{reformatNumber(initialPayment)}</div>
                                     <div>₽</div>
                                 </div>
                             </div>
                             <input className='slider-progress' type="range" min='10' max='60' step='1' value={initialPaymentPercent}
-                                   onChange={(event) => onInitialPaymentPercentChange(event)}/>
+                                   onChange={(event) => onInitialPaymentPercentSliderChange(event)}/>
                         </div>
-                        <div className='initial-payment-percent'><input type="tel" size='2'
-                                                                        value={initialPaymentPercent}/>%
+                        <div className='initial-payment-percent'>
+                            <NumberInput className='number-input initial-payment-input ' type='text' value={initialPaymentPercent} onChange={onInitialPaymentPercentChange} onBlur={onInitialPaymentPercentBlur}/>%
                         </div>
                     </div>
                 </div>
@@ -101,11 +147,13 @@ export const LeasingCalculator = () => {
                     <div className='parameter-field'>
                         <div className='parameter-wrapper'>
                             <div className='parameter-text'>
-                                <div><input type="tel" value={leaseTerm}/></div>
+                                <div>
+                                    <NumberInput className='number-input' type='text' value={leaseTerm} onChange={onLeaseTermChange} onBlur={onLeaseTermBlur}/>
+                                </div>
                                 <div className='measure'>мес.</div>
                             </div>
                             <input className='slider-progress' type="range" min='1' max='60' step='1' value={leaseTerm}
-                                   onChange={(event) => onLeaseTermChange(event)}/>
+                                   onChange={(event) => onLeaseTermSliderChange(event)}/>
                         </div>
                     </div>
                 </div>
@@ -114,14 +162,14 @@ export const LeasingCalculator = () => {
                 <div className="result">
                     <div className='result-title'>Сумма договора лизинга</div>
                     <div className="result-text">
-                        <div>{total}</div>
+                        <div>{reformatNumber(total)}</div>
                         <div>₽</div>
                     </div>
                 </div>
                 <div className="result">
                     <div className='result-title'>Ежемесячный платёж от</div>
                     <div className="result-text">
-                        <div>{monthlyPayment}</div>
+                        <div>{reformatNumber(monthlyPayment)}</div>
                         <div>₽</div>
                     </div>
                 </div>
