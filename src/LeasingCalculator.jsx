@@ -41,7 +41,7 @@ export const LeasingCalculator = () => {
     const onCarCostChange = (event) => {
         let num = Number(event.target.value.replace(/ /g,''))
         if(!num){
-            setCarCost(0);
+            setCarCost(1000000);
             return;
         }
         setCarCost(num)
@@ -54,7 +54,6 @@ export const LeasingCalculator = () => {
         } else if (num > 6000000) {
             num = 6000000
         }
-        console.log(num)
         setCarCost(num)
     }
 
@@ -79,7 +78,7 @@ export const LeasingCalculator = () => {
         } else if (num > 60) {
             num = 60
         }
-        setInitialPaymentPercent(num)
+        setLeaseTerm(num)
     }
 
     const onInitialPaymentPercentSliderChange = (event) => {
