@@ -28,6 +28,13 @@ export const LeasingCalculator = () => {
         }
     }, [carCost, initialPayment, initialPaymentPercent, leaseTerm, monthlyPayment, total])
 
+    // useEffect(() => {
+    //     for(let field of document.querySelectorAll('.parameter-field')) {
+    //         if (field.querySelectorAll('.number-input').) {
+    //
+    //         }
+    //     }
+    // })
 
     const reformatNumber = (number) => {
         return new Intl.NumberFormat("ru-RU").format(number);
@@ -105,6 +112,13 @@ export const LeasingCalculator = () => {
         setInitialPaymentPercent(num)
     }
 
+    const parameterOnClick = (id, event) => {
+        document.getElementsByClassName('parameter-field')[id].style = {
+            backgroundColor: 'transparent',
+            border: '2px solid #F3F3F4'
+        }
+    }
+
     return (
         <div>
             <div className='parameters'>
@@ -114,7 +128,10 @@ export const LeasingCalculator = () => {
                         <div className='parameter-wrapper'>
                             <div className='parameter-text'>
                                 <div>
-                                    <NumberInput className='number-input' type='text' value={carCost} onChange={onCarCostChange} onBlur={onCarCostBlur}/>
+                                    <NumberInput className='number-input' type='text' value={carCost}
+                                                 onChange={onCarCostChange}
+                                                 onBlur={onCarCostBlur}
+                                                 onClick={() => parameterOnClick(0)}/>
                                 </div>
                                 <div className='measure'>₽</div>
                             </div>
@@ -173,7 +190,13 @@ export const LeasingCalculator = () => {
                     </div>
                 </div>
                 <div className="send">
-                    <button>Оставить заявку</button>
+                    <button className='send-button' onClick={() => {
+                        document.getElementsByClassName('send-button')[0].className = 'button--loading'
+                        setTimeout(() => {
+                            document.getElementsByClassName('button--loading')[0].className = 'send-button'
+                            document.getElementsByClassName('button__text')[0].textContent = 'Заявка отправлена'
+                        }, 2000)
+                    }}><span className='button__text'>Оставить заявку</span></button>
                 </div>
             </div>
         </div>

@@ -83,6 +83,10 @@ body {
     color: #575757;
 }
 
+.number-input:focus {
+    outline: none;
+}
+
 .measure {
     font-family: Nekst, sans-serif;
     font-size: 30px;
@@ -116,6 +120,13 @@ body {
     width: 20px;
     height: 20px;
     margin-top: -9px;
+}
+
+.parameter-field input[type='range']::-webkit-slider-thumb:hover {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin-top: -11px;
 }
 
 input[type=range].slider-progress {
@@ -200,6 +211,46 @@ input[type=range].slider-progress::-webkit-slider-runnable-track {
     font-weight: 900;
     font-size: 30px;
     color: #FFFFFF;
+    position: relative;
+}
+
+.send button:hover {
+    background: #111111;
+}
+
+.send button:active {
+    background: #575757;
+}
+
+.button--loading .button__text {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.button--loading::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border: 2px solid transparent;
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: button-loading-spinner 1s ease infinite;
+}
+
+@keyframes button-loading-spinner {
+    from {
+        transform: rotate(0turn);
+    }
+
+    to {
+        transform: rotate(1turn);
+    }
 }
 
 @media (min-width: 320px) and (max-width: 767px) {
@@ -220,7 +271,7 @@ input[type=range].slider-progress::-webkit-slider-runnable-track {
         margin-bottom: 8px;
     }
 
-    .measure, .parameter-text div {
+    .measure, .parameter-text div, .number-input {
         font-size: 22px;
     }
 
