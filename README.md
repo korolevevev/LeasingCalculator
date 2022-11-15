@@ -11,3 +11,5 @@ What it can do:
 • Controls: text and range inputs
 
 • 2sec loader on "Send" button click
+
+• Project is made adaptive and cross-browser for all types of devices (3 breakpoints of @media)
